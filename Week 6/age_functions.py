@@ -21,9 +21,23 @@ def age_convert(num, inUnits = "y", outUnits = "m"):
 
 # DEFINE a function called 'mean', that takes 1 argument:
 #   nums: a list of numbers to find the mean of
+# def mean(nums):
+    # here, let's calculate the mean
+    # sum_nums = sum(nums) # find the sum
+    # n_nums = len(nums) # and the number (length) in list
+    # mean_nums = sum_nums / n_nums # then compute arithmetic mean
+    # return(mean_nums) # return
+
+# In Class Practice:
+# DEFINE a function called 'mean', that takes 1 argument:
+#   nums: a list of numbers to find the mean of
 def mean(nums):
     # here, let's calculate the mean
-    sum_nums = sum(nums) # find the sum
-    n_nums = len(nums) # and the number (length) in list
+    sum_nums = 0
+    n_nums = 0
+    while nums: # While there are numbers still in the list, so basically the length of the list no matter what.
+        current_num = nums.pop()
+        sum_nums = sum_nums + current_num
+        n_nums = n_nums + 1 # n_nums += 1 can also be used.
     mean_nums = sum_nums / n_nums # then compute arithmetic mean
     return(mean_nums) # return
