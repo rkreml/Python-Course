@@ -11,7 +11,7 @@ def gold_room():
 	print ("This room is full of gold. How much do you take?")
 	print ("Type a number from 0 as the lowest to 100 as the highest.")
 	
-	next = input("> ")
+	next = int(input("> "))
 	if next < 100:
 		print ("Nice, you're not greedy, you win!")
 		exit(0)
