@@ -149,14 +149,27 @@ print(civ_mean)
 
 ## 4b. Adapt the code from class to use np.genfromtxt() to load in your CSV.
 
+fname = "data.csv"
+data2 = np.genfromtxt(fname, delimiter=",")
+print(data2)
+
 ## 4c. Use the np.mean() function to find the mean of the DV from your CSV data.
 #       Save the DV mean as a variable with a meaningful and readable name, with a comment.
 
+print("The mean of the dependent variable of the second data array is:")
+dv_mean2 = float(np.mean(data2[:,3]))
+print(dv_mean2)
+
+# This is the mean value of the second data set's dependent variable as a float.
 
 ## 4d. Use the np.mean() function to find the mean of the continuous IV from your CSV data.
 #       Save the continuous IV mean as a variable with a meaningful and readable name, with a comment.
 
+print("The mean of the continuous independent variable in the second data array is:")
+civ_mean2 = float(np.mean(data2[:,1]))
+print(civ_mean2)
 
+# This is the mean value of the continuous independent variable of the second data array as a float.
 
 #############
 ### EXTRA CREDIT
@@ -167,12 +180,21 @@ print(civ_mean)
 #           The assignment should be done in ONE line of code.
 #           If you're not sure how to replace a value in a numpy array, look it up.
 
+data2[1,3] = np.NaN
+
 ## XCb. Now use np.mean() on the DV column of data.
 #         What do you get as a result?  Why?
+
+print(np.mean(data2[:,3]))
+
+# We get a result of 'nan' because the not a number is not an int or float data type. Therefore, the mean function knows the mean is not a number if including the nan.
 
 ## XCc. Now use np.nanmean() on the DV column of data.
 #          What do you get as a result? Why?
 
+print(np.nanmean(data2[:,3]))
+
+# We get a result of an integer because that command tells python to just ignore the nan in the second participant's DV column when calculating the mean. Notice the mean also changes, this is because the integer was replaced and ignored for calculating purposes.
 
 #############
 ### MISTAKE DOCUMENTATION
