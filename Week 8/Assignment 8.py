@@ -34,7 +34,7 @@ act_sch = act_sch.reset_index(drop=True)
 
 ## 1c) Run the line of code below and comment on what you think it does.
 #         Be sure to describe what term applies to ".mean()"
-print(act_sch['Avg Math'].mean())
+print(f"The average math score is: {act_sch['Avg Math'].mean()}")
 
 # This command takes the new subset of data that had the 'analysis level' as school and looks for the 'Avg Math' column.
 # Then it takes the mean of that data. It then prints that number in terminal.
@@ -58,7 +58,7 @@ avg_eng = act_sch['Avg Eng'].mean()
 #      For this comparison, the value should be True if that school's Avg Math value
 #           is GREATER than the value in 'avg_math', and False otherwise
 
-act_sch[avg_math > avg_eng]
+act_sch['Avg Math'] > avg_math
 
 ## 2b) Adapt the code in 2a to create a new column in the act_sch data frame
 #       called "AboveAvgMath", which is True if that Avg Math value is greater than avg_math
@@ -68,10 +68,12 @@ act_sch[avg_math > avg_eng]
 #      This problem may involve some trial and error, as we didn't cover this directly.
 #       This is great practice for figuring solving novel problems in your future!
 
+act_sch['AboveAvgMath'] = act_sch['Avg Math'] > avg_math
 
 ## 2c) Adapt the code from 2b to create a new column, "AboveAvgEng",
 #       which is set to True if that Avg Eng value is greater than avg_eng.
 
+act_sch['AboveAvgEng'] = act_sch['Avg Eng'] > avg_eng
 
 ## 2d) Use the sum() function, combined with logicals, to find:
 #       The number of schools that are above average in math AND English
@@ -85,9 +87,23 @@ act_sch[avg_math > avg_eng]
 #      This problem may involve some trial and error, as we didn't cover this directly.
 #       This is great practice for figuring solving novel problems in your future!
 
+total_true_sum = (sum(act_sch['AboveAvgMath']) + sum(act_sch['AboveAvgEng']))
+print(f'The total number of schools above average in both English and Math is: {total_true_sum}')
+total_math_not_eng_sum = total_true_sum - sum(act_sch['AboveAvgEng'])
+print(f'The total number of schools above average in Math, but not English is: {total_math_not_eng_sum}')
+total_eng_not_math_sum = total_true_sum - sum(act_sch['AboveAvgMath'])
+print(f'The total number of schools above average in English, but not Math is: {total_eng_not_math_sum}')
+
+eng_false = sum(act_sch['AboveAvgEng'] == False)
+math_false = sum(act_sch['AboveAvgMath'] == False)
+total_below_both = eng_false + math_false
+print(f'The total number of schools below average in both Math and English is: {total_below_both}')
 
 ## 2e) What do you notice about the numbers in 2d?  Write 1-2 sentences.
 
+# The math and english schools added together do make up the total number of schools which is a good sign.
+# What I found interesting is that there are more schools that are below both than there are above in both.
+# Also, there are more schools that are above average in math than there are above average in english, though they are close. Almost half to of the total above to be exact.
 
 #############
 ### PROBLEM 3
@@ -104,6 +120,12 @@ act_sch[avg_math > avg_eng]
 #    I will speak with each student individually to help come up with a reasonable final project scope.
 #  I expect approximately 4-6 sentences for this first draft of your project idea.
 
+# I think my final project could involve pulling data in from the internet from a database somewhere and compiling it into a 2-D matrix dataframe, or a 3-D cubic dataframe.
+# Then I would want to find some interesting stats on the dataframe and focus on indexing properly. Getting information that is important out of the data.
+# Lastly, I would love to create some plots so visualize the data in a way that makes sense to my audience and possibly even write a user-interactive script that someone could enter what they want and the script computes the stats and spits out the numbers with the visualization which changes depending on the variables the user wants to look at.
 
 #############
 ### MISTAKE DOCUMENTATION
+# 1.) I ran into some issues with the logic indexing in the second question. 2a was difficult at first for me to understand that then I realized I read it wrong.
+# 2.) The second issue I ran into was with 2d when I needed one, but not the other. Making sure the answer contained both conditions was a bit tricky.
+# 3.) The last mistake I had was the final part of 2d which I was considering subtracting and using the abs() function to get a number. I decided to just add the two false statements together instead.
